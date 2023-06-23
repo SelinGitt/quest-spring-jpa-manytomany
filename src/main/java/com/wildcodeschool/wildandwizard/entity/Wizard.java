@@ -4,10 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Date;
 import javax.persistence.ManyToMany;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
-import java.sql.Date;
+import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 public class Wizard {
@@ -24,11 +26,10 @@ public class Wizard {
 
     @ManyToMany
     @JoinTable(name = "wizard_course",
-    joinColumns = @JoinColumn(name = "wizard_id"),
-    inverseJoinColumns = @JoinColumn(name = "course_id"))
-    private List<Course> courses;
+            joinColumns = @JoinColumn(name = "wizard_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id"))
+    private List<Course> courses = new ArrayList<>();
 
-        
     public Wizard() {
     }
 
@@ -86,7 +87,7 @@ public class Wizard {
 
     public void setMuggle(boolean muggle) {
         this.muggle = muggle;
-    }
+    } 
 
     public List<Course> getCourses() {
         return courses;
